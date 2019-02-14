@@ -628,7 +628,7 @@ namespace SchedulingSoftware.SupportCode
 
         public void logUserActivity(string logText)
         {
-            string logPath = @"C:\Users\Bedir\Documents\logFile.txt";//<---- change directory
+            string logPath = @"C:\Users\baygun\logFile.txt";//<---- change directory
             if (!File.Exists(logPath))
             {
                 var file = File.Create(logPath);
@@ -733,8 +733,40 @@ namespace SchedulingSoftware.SupportCode
 
             return appts;
         }
+        public List<int> returnDistinctConsultantsWithAppts()
+        {
+            List<int> userIds = new List<int>();
 
-        public List<Appointment> returnConsultantsSchedule()
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT DISTINCT userId FROM appointment";
+                cmd.ExecuteNonQuery();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        userIds.Add((int)reader["userId"]);
+                    }
+                }
+            }
+            //catches errors in case the above code fails
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception thrown when returning distinct consultants with appts: " + ex);
+            }
+            //Close connection regardless of whether the try block executes or not.
+            finally
+            {
+                conn.Close();
+            }
+
+            return userIds;
+        }
+        public List<Appointment> returnAllConsultantsSchedule(int userId)
         {
             List<Appointment> appts = new List<Appointment>();
             DateTime currentUtc = DateTime.UtcNow;
@@ -744,7 +776,7 @@ namespace SchedulingSoftware.SupportCode
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT start, end FROM appointment";
+                cmd.CommandText = "SELECT start, end FROM appointment WHERE userId = @userId";
                 cmd.ExecuteNonQuery();
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())

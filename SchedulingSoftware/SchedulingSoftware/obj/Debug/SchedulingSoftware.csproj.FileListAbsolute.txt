@@ -50,3 +50,5 @@ C:\Users\Bedir\Documents\School\SchedulingSoftware\obj\Debug\SchedulingSoftware.
 C:\Users\Bedir\Documents\School\SchedulingSoftware\obj\Debug\SchedulingSoftware.Reports.resources
 C:\Users\Bedir\Documents\School\SchedulingSoftware\bin\Debug\MySql.Data.dll
 C:\Users\Bedir\Documents\School\SchedulingSoftware\obj\Debug\SchedulingSoftware.Reminder.resources
+C:\Users\baygun\Documents\Stuff\Okul\SchedulingSoftware\SchedulingSoftware\obj\Debug\SchedulingSoftware.Reminder.resources
+C:\Users\baygun\Documents\Stuff\Okul\SchedulingSoftware\SchedulingSoftware\obj\Debug\SchedulingSoftware.Reports.resources

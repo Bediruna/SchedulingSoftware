@@ -120,14 +120,25 @@ namespace SchedulingSoftware
             resultsGroupBox.Text = "Consultants schedule";
             resultLabel.Text = string.Empty;
 
-            List<Appointment> consultantAppts = data.returnConsultantsSchedule();
+            string returnString = string.Empty;
 
-            foreach (var appt in consultantAppts)
+            List<int> userIds = data.returnDistinctConsultantsWithAppts();
+            //List<Appointment> consultantAppts = data.returnAllConsultantsSchedule();
+
+            //foreach (var appt in consultantAppts)
+            //{
+            //    if (!userIds.Exists(x => x == appt.userId))//this lambda expression makes it easier to see if the list already contains a value.
+            //    {
+            //        userIds.Add(appt.userId);
+            //    }                
+            //}
+            userIds.ForEach(varid => { });//https://stackoverflow.com/questions/225937/foreach-vs-somelist-foreach
+            foreach (var id in userIds)
             {
-                if (appt.userId == 0)
-                {
 
-                }
+                List<Appointment> consultanAppts = data.returnAllConsultantsSchedule(id);
+                returnString += id + "";
+                consultanAppts.ForEach(x => { });
             }
         }
 

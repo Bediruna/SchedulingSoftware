@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using MySql.Data.MySqlClient;
@@ -18,7 +19,7 @@ namespace SchedulingSoftware.SupportCode
         //returns a boolean to verify that user has been registered.
         public bool registerUser(User userInfo)
         {
-            
+
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             try
@@ -35,7 +36,7 @@ namespace SchedulingSoftware.SupportCode
 
             }
             //catches errors in case the above code fails
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 //Write exception with label to cosole for debugging
                 Console.WriteLine("Exception thrown when registering user: " + ex);
@@ -46,14 +47,14 @@ namespace SchedulingSoftware.SupportCode
             {
                 conn.Close();
             }
-                        
+
             return true;
         }
 
         public int verifyUser(User userInfo)
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
-            
+
             int userId = -1;
 
             string returnedUserName;
@@ -198,7 +199,7 @@ namespace SchedulingSoftware.SupportCode
             if (!customersDataTable.Columns.Contains("Address")) { customersDataTable.Columns.Add("Address", typeof(string)); }
             if (!customersDataTable.Columns.Contains("Address 2")) { customersDataTable.Columns.Add("Address 2", typeof(string)); }
             if (!customersDataTable.Columns.Contains("City")) { customersDataTable.Columns.Add("City", typeof(string)); }
-            if (!customersDataTable.Columns.Contains("Postal Code")) { customersDataTable.Columns.Add("Postal Code", typeof(string)); }            
+            if (!customersDataTable.Columns.Contains("Postal Code")) { customersDataTable.Columns.Add("Postal Code", typeof(string)); }
             if (!customersDataTable.Columns.Contains("Country")) { customersDataTable.Columns.Add("Country", typeof(string)); }
 
             try
@@ -214,7 +215,7 @@ namespace SchedulingSoftware.SupportCode
                     while (reader.Read())
                     {
 
-                        customersDataTable.Rows.Add (reader["customerId"], reader["customerName"], reader["phone"], reader["address"], reader["address2"], reader["city"], reader["postalCode"], reader["country"]);
+                        customersDataTable.Rows.Add(reader["customerId"], reader["customerName"], reader["phone"], reader["address"], reader["address2"], reader["city"], reader["postalCode"], reader["country"]);
 
                     }
                 }
@@ -406,7 +407,7 @@ namespace SchedulingSoftware.SupportCode
             //If column does not exist, add column.
             if (!appointmentsDataTable.Columns.Contains("ID")) { appointmentsDataTable.Columns.Add("ID", typeof(int)); }
             if (!appointmentsDataTable.Columns.Contains("Title")) { appointmentsDataTable.Columns.Add("Title", typeof(string)); }
-            if (!appointmentsDataTable.Columns.Contains("Customer Name")) { appointmentsDataTable.Columns.Add("Customer Name", typeof(string)); }            
+            if (!appointmentsDataTable.Columns.Contains("Customer Name")) { appointmentsDataTable.Columns.Add("Customer Name", typeof(string)); }
 
             try
             {
@@ -446,7 +447,7 @@ namespace SchedulingSoftware.SupportCode
             MySqlConnection conn = new MySqlConnection(connectionString);
 
             int apptId = -1;
-            
+
             try
             {
                 conn.Open();
@@ -578,12 +579,12 @@ namespace SchedulingSoftware.SupportCode
                 cmd.CommandText = "SELECT EXISTS(SELECT * FROM appointment WHERE start <= @end AND end >= @start)";
                 cmd.Parameters.AddWithValue("@start", apptStartTime);
                 cmd.Parameters.AddWithValue("@end", apptEndTime);
-                
-                if(cmd.ExecuteScalar().ToString() == "1")
+
+                if (cmd.ExecuteScalar().ToString() == "1")
                 {
                     overlap = true;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -627,7 +628,7 @@ namespace SchedulingSoftware.SupportCode
 
         public void logUserActivity(string logText)
         {
-            string logPath = @"C:\Users\baygun\Documents\Stuff\logFile.txt";
+            string logPath = @"C:\Users\Bedir\Documents\logFile.txt";//<---- change directory
             if (!File.Exists(logPath))
             {
                 var file = File.Create(logPath);
@@ -645,29 +646,132 @@ namespace SchedulingSoftware.SupportCode
             }
         }
 
-        public void checkRemindersForUser(int userId)
+        public List<Appointment> checkUserReminders(int userId)
         {
+            List<Appointment> appts = new List<Appointment>();
+            DateTime currentUtc = DateTime.UtcNow;
+
             MySqlConnection conn = new MySqlConnection(connectionString);
-            //****************************last left off on this method
             try
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM appointment WHERE userId = @userId";
+                cmd.CommandText = "SELECT * FROM appointment WHERE userId = @userId and TIMESTAMPDIFF(MINUTE, start, @currentTime) < 15";
                 cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@currentTime", currentUtc);
                 cmd.ExecuteNonQuery();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        appts.Add(new Appointment()
+                        {
+                            customerId = (int)reader["customerId"],
+                            title = reader["appointmentId"].ToString(),
+                            description = reader["appointmentId"].ToString(),
+                            location = reader["location"].ToString(),
+                            contact = reader["contact"].ToString(),
+                            type = reader["type"].ToString(),
+                            url = reader["url"].ToString(),
+                            start = Convert.ToDateTime(reader["start"]),
+                            end = Convert.ToDateTime(reader["end"])
+                        });
+                    }
+                }
             }
             //catches errors in case the above code fails
             catch (Exception ex)
             {
-                Console.WriteLine("Exception thrown when deleting appointment: " + ex);
+                Console.WriteLine("Exception thrown when checking reminders: " + ex);
             }
             //Close connection regardless of whether the try block executes or not.
             finally
             {
                 conn.Close();
             }
+
+            return appts;
         }
 
+        public List<Appointment> returnApptTypesByMonth(int userId, int month)
+        {
+            List<Appointment> appts = new List<Appointment>();
+            DateTime currentUtc = DateTime.UtcNow;
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT type FROM appointment WHERE userId = @userId and MONTH(start) = @month";
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.ExecuteNonQuery();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        appts.Add(new Appointment()
+                        {
+                            type = reader["type"].ToString()
+                        });
+                    }
+                }
+            }
+            //catches errors in case the above code fails
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception thrown when returning appt types by month: " + ex);
+            }
+            //Close connection regardless of whether the try block executes or not.
+            finally
+            {
+                conn.Close();
+            }
+
+            return appts;
+        }
+
+        public List<Appointment> returnConsultantsSchedule()
+        {
+            List<Appointment> appts = new List<Appointment>();
+            DateTime currentUtc = DateTime.UtcNow;
+
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT start, end FROM appointment";
+                cmd.ExecuteNonQuery();
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        appts.Add(new Appointment()
+                        {
+                            userId = (int)reader["userId"],
+                            start = Convert.ToDateTime(reader["start"]),
+                            end = Convert.ToDateTime(reader["end"])
+                        });
+                    }
+                }
+            }
+            //catches errors in case the above code fails
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception thrown when returning consultant schedule: " + ex);
+            }
+            //Close connection regardless of whether the try block executes or not.
+            finally
+            {
+                conn.Close();
+            }
+
+            return appts;
+        }
     }
 }

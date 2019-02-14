@@ -1,6 +1,7 @@
 ﻿using SchedulingSoftware.DataModels;
 using SchedulingSoftware.SupportCode;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -14,11 +15,6 @@ namespace SchedulingSoftware
             InitializeComponent();
 
             showCorrectLang();
-
-            //TimeZone localZone = TimeZone.CurrentTimeZone;
-            //DateTime currentDate = DateTime.Now;
-            //Console.WriteLine("timezone: " + localZone.StandardName);
-            //Console.WriteLine("daylightSavings: " + localZone.IsDaylightSavingTime(currentDate));
         }
 
         private void showCorrectLang()
@@ -87,6 +83,16 @@ namespace SchedulingSoftware
                 this.Hide();
                 MainScreen mainScr = new MainScreen(userInfo);
                 mainScr.Show();
+                //Show upcoming appts when user signs in.
+                List<Appointment> upcomingAppts = data.checkUserReminders(userInfo.userId);
+                if (upcomingAppts.Count > 0)
+                {
+                    foreach (var appt in upcomingAppts)
+                    {
+                        Reminder apptReminder = new Reminder(appt);
+                        apptReminder.Show();
+                    }
+                }
             }
             else
             {

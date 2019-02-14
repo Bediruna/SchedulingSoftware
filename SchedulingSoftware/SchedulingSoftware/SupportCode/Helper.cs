@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Linq;
 
 namespace SchedulingSoftware.SupportCode
 {
@@ -9,7 +9,7 @@ namespace SchedulingSoftware.SupportCode
 
         public static void validateApptTime()
         {
-
+            var evens = Enumerable.Range(1, 100).Where(x => (x % 2) == 0).ToList();
         }
 
     }

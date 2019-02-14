@@ -1,6 +1,7 @@
 ﻿using SchedulingSoftware.DataModels;
 using SchedulingSoftware.SupportCode;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -13,19 +14,12 @@ namespace SchedulingSoftware
         {
             InitializeComponent();
             currentUser = new User();
-            currentUser.username = user.username;
-            currentUser.userId = user.userId;
+            currentUser = user;
             mainGroupBox.Text = "Hi " + user.username;
 
             DataProcedures data = new DataProcedures();
 
-            customerDataGridView.DataSource = data.getCustomers();
-            customerDataGridView.Columns[0].Width = 20;
-            customerDataGridView.Columns[1].Width = 70;
-            customerDataGridView.Columns[2].Width = 80;
-            customerDataGridView.Columns[3].Width = 100;
-            customerDataGridView.Columns[4].Width = 100;
-            customerDataGridView.Columns[5].Width = 100;
+            customerDataGridView.DataSource = data.getCustomers();            
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -164,7 +158,7 @@ namespace SchedulingSoftware
         private void reportsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Reports reportsForm = new Reports();
+            Reports reportsForm = new Reports(currentUser);
             reportsForm.Show();
         }
     }

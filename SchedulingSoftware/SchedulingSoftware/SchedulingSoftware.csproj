@@ -86,6 +86,12 @@
     <Compile Include="ModifyCustomer.Designer.cs">
       <DependentUpon>ModifyCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reminder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reminder.Designer.cs">
+      <DependentUpon>Reminder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,12 @@
     </Compile>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reminder.resx">
+      <DependentUpon>Reminder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

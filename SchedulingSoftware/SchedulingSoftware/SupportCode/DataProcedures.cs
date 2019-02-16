@@ -628,7 +628,7 @@ namespace SchedulingSoftware.SupportCode
 
         public void logUserActivity(string logText)
         {
-            string logPath = @"C:\Users\baygun\logFile.txt";//<---- change directory
+            string logPath = @"C:\Users\Bedir\logFile.txt";//<---- change directory
             if (!File.Exists(logPath))
             {
                 var file = File.Create(logPath);
@@ -777,6 +777,7 @@ namespace SchedulingSoftware.SupportCode
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT start, end FROM appointment WHERE userId = @userId";
+                cmd.Parameters.AddWithValue("@userId", userId);
                 cmd.ExecuteNonQuery();
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -785,7 +786,6 @@ namespace SchedulingSoftware.SupportCode
                     {
                         appts.Add(new Appointment()
                         {
-                            userId = (int)reader["userId"],
                             start = Convert.ToDateTime(reader["start"]),
                             end = Convert.ToDateTime(reader["end"])
                         });

@@ -114,7 +114,6 @@
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModels\User.cs" />
-    <Compile Include="SupportCode\Helper.cs" />
     <EmbeddedResource Include="AddAppointment.resx">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </EmbeddedResource>

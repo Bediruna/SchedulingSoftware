@@ -120,26 +120,19 @@ namespace SchedulingSoftware
             resultsGroupBox.Text = "Consultants schedule";
             resultLabel.Text = string.Empty;
 
-            string returnString = string.Empty;
+            string resultString = string.Empty;
 
-            List<int> userIds = data.returnDistinctConsultantsWithAppts();
-            //List<Appointment> consultantAppts = data.returnAllConsultantsSchedule();
+            List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
 
-            //foreach (var appt in consultantAppts)
-            //{
-            //    if (!userIds.Exists(x => x == appt.userId))//this lambda expression makes it easier to see if the list already contains a value.
-            //    {
-            //        userIds.Add(appt.userId);
-            //    }                
-            //}
-            userIds.ForEach(varid => { });//https://stackoverflow.com/questions/225937/foreach-vs-somelist-foreach
-            foreach (var id in userIds)
-            {
+            userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
+                List<Appointment> consultantAppts = data.returnAllConsultantsSchedule(varid);
+                resultString += "\n\nAppointments for user " + varid + "";
+                consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
+                    resultString += "\nStart: " + appt.start + "   End: " + appt.end;
+                });
+            });
 
-                List<Appointment> consultanAppts = data.returnAllConsultantsSchedule(id);
-                returnString += id + "";
-                consultanAppts.ForEach(x => { });
-            }
+            resultLabel.Text = resultString;
         }
 
         private void consultantHoursButton_Click(object sender, EventArgs e)
@@ -148,8 +141,22 @@ namespace SchedulingSoftware
             resultsGroupBox.Visible = true;
             resultsGroupBox.Text = "Consultants hours";
             resultLabel.Text = string.Empty;
-            
 
+            string resultString = string.Empty;
+
+            List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
+
+            userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
+                List<Appointment> consultantAppts = data.returnAllConsultantsSchedule(varid);                
+                double totalHours = 0;
+                consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
+                    totalHours += (appt.end - appt.start).TotalHours;                    
+                });
+
+                resultString += "\n\nTotal hours for user " + varid + ": " + totalHours;
+            });
+
+            resultLabel.Text = resultString;
         }
     }
 }

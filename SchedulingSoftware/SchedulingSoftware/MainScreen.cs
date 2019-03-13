@@ -22,6 +22,24 @@ namespace SchedulingSoftware
             customerDataGridView.DataSource = data.getCustomers();            
         }
 
+        private void emboldenMonthCalendar()
+        {
+            DataProcedures data = new DataProcedures();
+
+            List<Appointment> appts = data.returnUserSchedule(currentUser.userId);
+
+
+            DateTime[] datesToBold = new DateTime[60];
+
+            int iterator = 0;
+            appts.ForEach(appt => {//lambda used to make foreach simpler
+                datesToBold[iterator] = appt.start;
+                iterator++;
+            });
+
+            monthCalendar.BoldedDates = datesToBold;
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();

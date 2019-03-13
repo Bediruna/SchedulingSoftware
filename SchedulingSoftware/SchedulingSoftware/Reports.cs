@@ -125,7 +125,7 @@ namespace SchedulingSoftware
             List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
 
             userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
-                List<Appointment> consultantAppts = data.returnAllConsultantsSchedule(varid);
+                List<Appointment> consultantAppts = data.returnUserSchedule(varid);
                 resultString += "\n\nAppointments for user " + varid + "";
                 consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
                     resultString += "\nStart: " + appt.start + "   End: " + appt.end;
@@ -147,7 +147,7 @@ namespace SchedulingSoftware
             List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
 
             userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
-                List<Appointment> consultantAppts = data.returnAllConsultantsSchedule(varid);                
+                List<Appointment> consultantAppts = data.returnUserSchedule(varid);                
                 double totalHours = 0;
                 consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
                     totalHours += (appt.end - appt.start).TotalHours;                    

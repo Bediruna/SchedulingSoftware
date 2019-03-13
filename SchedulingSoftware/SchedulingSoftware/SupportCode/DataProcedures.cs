@@ -628,7 +628,10 @@ namespace SchedulingSoftware.SupportCode
 
         public void logUserActivity(string logText)
         {
-            string logPath = @"C:\Users\Bedir\logFile.txt";//<---- change directory
+            //Gets current directory information to write the log file to.
+            DirectoryInfo info = new DirectoryInfo(".");
+
+            string logPath = info + "\\logFile.txt";//<---- change directory
             if (!File.Exists(logPath))
             {
                 var file = File.Create(logPath);
@@ -766,7 +769,7 @@ namespace SchedulingSoftware.SupportCode
 
             return userIds;
         }
-        public List<Appointment> returnAllConsultantsSchedule(int userId)
+        public List<Appointment> returnUserSchedule(int userId)
         {
             List<Appointment> appts = new List<Appointment>();
             DateTime currentUtc = DateTime.UtcNow;

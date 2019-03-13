@@ -51,9 +51,10 @@
             // closeButton
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.closeButton.Location = new System.Drawing.Point(94, 363);
+            this.closeButton.Location = new System.Drawing.Point(298, 1033);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(80, 30);
+            this.closeButton.Size = new System.Drawing.Size(253, 85);
             this.closeButton.TabIndex = 20;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -61,159 +62,176 @@
             // 
             // endDateTimePicker
             // 
-            this.endDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            this.endDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
             this.endDateTimePicker.Enabled = false;
             this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDateTimePicker.Location = new System.Drawing.Point(83, 300);
+            this.endDateTimePicker.Location = new System.Drawing.Point(263, 854);
+            this.endDateTimePicker.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.Size = new System.Drawing.Size(128, 20);
+            this.endDateTimePicker.Size = new System.Drawing.Size(397, 44);
             this.endDateTimePicker.TabIndex = 38;
             // 
             // startDateTimePicker
             // 
-            this.startDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm";
+            this.startDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
             this.startDateTimePicker.Enabled = false;
             this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDateTimePicker.Location = new System.Drawing.Point(83, 269);
+            this.startDateTimePicker.Location = new System.Drawing.Point(263, 766);
+            this.startDateTimePicker.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(128, 20);
+            this.startDateTimePicker.Size = new System.Drawing.Size(397, 44);
             this.startDateTimePicker.TabIndex = 37;
             // 
             // typeTextBox
             // 
             this.typeTextBox.Enabled = false;
-            this.typeTextBox.Location = new System.Drawing.Point(83, 210);
+            this.typeTextBox.Location = new System.Drawing.Point(263, 598);
+            this.typeTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.typeTextBox.Name = "typeTextBox";
-            this.typeTextBox.Size = new System.Drawing.Size(128, 20);
+            this.typeTextBox.Size = new System.Drawing.Size(397, 44);
             this.typeTextBox.TabIndex = 35;
             // 
             // contactTextBox
             // 
             this.contactTextBox.Enabled = false;
-            this.contactTextBox.Location = new System.Drawing.Point(83, 180);
+            this.contactTextBox.Location = new System.Drawing.Point(263, 512);
+            this.contactTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.contactTextBox.Name = "contactTextBox";
-            this.contactTextBox.Size = new System.Drawing.Size(128, 20);
+            this.contactTextBox.Size = new System.Drawing.Size(397, 44);
             this.contactTextBox.TabIndex = 34;
             // 
             // locationTextBox
             // 
             this.locationTextBox.Enabled = false;
-            this.locationTextBox.Location = new System.Drawing.Point(83, 150);
+            this.locationTextBox.Location = new System.Drawing.Point(263, 427);
+            this.locationTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.locationTextBox.Name = "locationTextBox";
-            this.locationTextBox.Size = new System.Drawing.Size(128, 20);
+            this.locationTextBox.Size = new System.Drawing.Size(397, 44);
             this.locationTextBox.TabIndex = 33;
             // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Enabled = false;
-            this.descriptionTextBox.Location = new System.Drawing.Point(83, 70);
+            this.descriptionTextBox.Location = new System.Drawing.Point(263, 199);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(128, 70);
+            this.descriptionTextBox.Size = new System.Drawing.Size(397, 192);
             this.descriptionTextBox.TabIndex = 32;
             // 
             // titleTextBox
             // 
             this.titleTextBox.Enabled = false;
-            this.titleTextBox.Location = new System.Drawing.Point(83, 40);
+            this.titleTextBox.Location = new System.Drawing.Point(263, 114);
+            this.titleTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(128, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(397, 44);
             this.titleTextBox.TabIndex = 31;
             // 
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.Location = new System.Drawing.Point(50, 306);
+            this.endLabel.Location = new System.Drawing.Point(158, 871);
+            this.endLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.endLabel.Name = "endLabel";
-            this.endLabel.Size = new System.Drawing.Size(26, 13);
+            this.endLabel.Size = new System.Drawing.Size(74, 37);
             this.endLabel.TabIndex = 30;
             this.endLabel.Text = "End";
             // 
             // startLabel
             // 
             this.startLabel.AutoSize = true;
-            this.startLabel.Location = new System.Drawing.Point(47, 275);
+            this.startLabel.Location = new System.Drawing.Point(149, 783);
+            this.startLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(29, 13);
+            this.startLabel.Size = new System.Drawing.Size(85, 37);
             this.startLabel.TabIndex = 29;
             this.startLabel.Text = "Start";
             // 
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(45, 213);
+            this.typeLabel.Location = new System.Drawing.Point(143, 606);
+            this.typeLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(31, 13);
+            this.typeLabel.Size = new System.Drawing.Size(87, 37);
             this.typeLabel.TabIndex = 27;
             this.typeLabel.Text = "Type";
             // 
             // contactLabel
             // 
             this.contactLabel.AutoSize = true;
-            this.contactLabel.Location = new System.Drawing.Point(32, 183);
+            this.contactLabel.Location = new System.Drawing.Point(101, 521);
+            this.contactLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.contactLabel.Name = "contactLabel";
-            this.contactLabel.Size = new System.Drawing.Size(44, 13);
+            this.contactLabel.Size = new System.Drawing.Size(128, 37);
             this.contactLabel.TabIndex = 26;
             this.contactLabel.Text = "Contact";
             // 
             // locationLabel
             // 
             this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(28, 153);
+            this.locationLabel.Location = new System.Drawing.Point(89, 435);
+            this.locationLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.locationLabel.Name = "locationLabel";
-            this.locationLabel.Size = new System.Drawing.Size(48, 13);
+            this.locationLabel.Size = new System.Drawing.Size(139, 37);
             this.locationLabel.TabIndex = 25;
             this.locationLabel.Text = "Location";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(16, 73);
+            this.descriptionLabel.Location = new System.Drawing.Point(51, 208);
+            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLabel.Size = new System.Drawing.Size(177, 37);
             this.descriptionLabel.TabIndex = 24;
             this.descriptionLabel.Text = "Description";
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(49, 43);
+            this.titleLabel.Location = new System.Drawing.Point(155, 122);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(27, 13);
+            this.titleLabel.Size = new System.Drawing.Size(77, 37);
             this.titleLabel.TabIndex = 23;
             this.titleLabel.Text = "Title";
             // 
             // urlLabel
             // 
             this.urlLabel.AutoSize = true;
-            this.urlLabel.Location = new System.Drawing.Point(47, 243);
+            this.urlLabel.Location = new System.Drawing.Point(149, 692);
+            this.urlLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(29, 13);
+            this.urlLabel.Size = new System.Drawing.Size(80, 37);
             this.urlLabel.TabIndex = 28;
             this.urlLabel.Text = "URL";
             // 
             // urlTextBox
             // 
             this.urlTextBox.Enabled = false;
-            this.urlTextBox.Location = new System.Drawing.Point(83, 240);
+            this.urlTextBox.Location = new System.Drawing.Point(263, 683);
+            this.urlTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.urlTextBox.Name = "urlTextBox";
-            this.urlTextBox.Size = new System.Drawing.Size(128, 20);
+            this.urlTextBox.Size = new System.Drawing.Size(397, 44);
             this.urlTextBox.TabIndex = 36;
             // 
             // headMsg
             // 
             this.headMsg.AutoSize = true;
-            this.headMsg.Location = new System.Drawing.Point(12, 9);
+            this.headMsg.Location = new System.Drawing.Point(38, 26);
+            this.headMsg.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.headMsg.Name = "headMsg";
-            this.headMsg.Size = new System.Drawing.Size(180, 13);
+            this.headMsg.Size = new System.Drawing.Size(536, 37);
             this.headMsg.TabIndex = 39;
             this.headMsg.Text = "You have an upcoming appoint with ";
             // 
             // Reminder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 405);
+            this.ClientSize = new System.Drawing.Size(1102, 1153);
             this.Controls.Add(this.headMsg);
             this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.startDateTimePicker);
@@ -232,6 +250,7 @@
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.closeButton);
+            this.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.Name = "Reminder";
             this.Text = "Appointment Reminder";
             this.ResumeLayout(false);

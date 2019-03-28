@@ -57,10 +57,9 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(130, 122);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.titleLabel.Location = new System.Drawing.Point(41, 43);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(77, 37);
+            this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "Title";
             // 
@@ -90,11 +89,9 @@
             this.addApptGroupBox.Controls.Add(this.locationLabel);
             this.addApptGroupBox.Controls.Add(this.descriptionLabel);
             this.addApptGroupBox.Controls.Add(this.titleLabel);
-            this.addApptGroupBox.Location = new System.Drawing.Point(38, 34);
-            this.addApptGroupBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.addApptGroupBox.Location = new System.Drawing.Point(12, 12);
             this.addApptGroupBox.Name = "addApptGroupBox";
-            this.addApptGroupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-            this.addApptGroupBox.Size = new System.Drawing.Size(2559, 1073);
+            this.addApptGroupBox.Size = new System.Drawing.Size(939, 436);
             this.addApptGroupBox.TabIndex = 2;
             this.addApptGroupBox.TabStop = false;
             this.addApptGroupBox.Text = "Enter Appointment information";
@@ -103,10 +100,9 @@
             // 
             this.dateTimeErrorlabel.AutoSize = true;
             this.dateTimeErrorlabel.ForeColor = System.Drawing.Color.Red;
-            this.dateTimeErrorlabel.Location = new System.Drawing.Point(228, 919);
-            this.dateTimeErrorlabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.dateTimeErrorlabel.Location = new System.Drawing.Point(72, 323);
             this.dateTimeErrorlabel.Name = "dateTimeErrorlabel";
-            this.dateTimeErrorlabel.Size = new System.Drawing.Size(362, 37);
+            this.dateTimeErrorlabel.Size = new System.Drawing.Size(121, 13);
             this.dateTimeErrorlabel.TabIndex = 21;
             this.dateTimeErrorlabel.Text = "Please enter valid times.";
             this.dateTimeErrorlabel.Visible = false;
@@ -121,8 +117,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.customerDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.customerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customerDataGridView.Location = new System.Drawing.Point(662, 54);
-            this.customerDataGridView.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.customerDataGridView.Location = new System.Drawing.Point(209, 19);
             this.customerDataGridView.MultiSelect = false;
             this.customerDataGridView.Name = "customerDataGridView";
             this.customerDataGridView.ReadOnly = true;
@@ -132,17 +127,16 @@
             this.customerDataGridView.ShowCellToolTips = false;
             this.customerDataGridView.ShowEditingIcon = false;
             this.customerDataGridView.ShowRowErrors = false;
-            this.customerDataGridView.Size = new System.Drawing.Size(1878, 899);
+            this.customerDataGridView.Size = new System.Drawing.Size(724, 316);
             this.customerDataGridView.TabIndex = 20;
             // 
             // fillFieldsLabel
             // 
             this.fillFieldsLabel.AutoSize = true;
             this.fillFieldsLabel.ForeColor = System.Drawing.Color.Red;
-            this.fillFieldsLabel.Location = new System.Drawing.Point(263, 68);
-            this.fillFieldsLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.fillFieldsLabel.Location = new System.Drawing.Point(83, 24);
             this.fillFieldsLabel.Name = "fillFieldsLabel";
-            this.fillFieldsLabel.Size = new System.Drawing.Size(285, 37);
+            this.fillFieldsLabel.Size = new System.Drawing.Size(94, 13);
             this.fillFieldsLabel.TabIndex = 19;
             this.fillFieldsLabel.Text = "Please fill all fields.";
             this.fillFieldsLabel.Visible = false;
@@ -150,10 +144,9 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelButton.Location = new System.Drawing.Point(19, 971);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.cancelButton.Location = new System.Drawing.Point(6, 400);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(253, 85);
+            this.cancelButton.Size = new System.Drawing.Size(80, 30);
             this.cancelButton.TabIndex = 18;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -162,10 +155,9 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(2286, 971);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.saveButton.Location = new System.Drawing.Point(853, 400);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(253, 85);
+            this.saveButton.Size = new System.Drawing.Size(80, 30);
             this.saveButton.TabIndex = 17;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -175,10 +167,9 @@
             // 
             this.endDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
             this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDateTimePicker.Location = new System.Drawing.Point(238, 854);
-            this.endDateTimePicker.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.endDateTimePicker.Location = new System.Drawing.Point(75, 300);
             this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.Size = new System.Drawing.Size(397, 44);
+            this.endDateTimePicker.Size = new System.Drawing.Size(128, 20);
             this.endDateTimePicker.TabIndex = 16;
             this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
             // 
@@ -186,139 +177,124 @@
             // 
             this.startDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
             this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDateTimePicker.Location = new System.Drawing.Point(238, 766);
-            this.startDateTimePicker.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.startDateTimePicker.Location = new System.Drawing.Point(75, 269);
             this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(397, 44);
+            this.startDateTimePicker.Size = new System.Drawing.Size(128, 20);
             this.startDateTimePicker.TabIndex = 15;
             this.startDateTimePicker.ValueChanged += new System.EventHandler(this.startDateTimePicker_ValueChanged);
             // 
             // urlTextBox
             // 
-            this.urlTextBox.Location = new System.Drawing.Point(238, 683);
-            this.urlTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.urlTextBox.Location = new System.Drawing.Point(75, 240);
             this.urlTextBox.Name = "urlTextBox";
-            this.urlTextBox.Size = new System.Drawing.Size(397, 44);
+            this.urlTextBox.Size = new System.Drawing.Size(128, 20);
             this.urlTextBox.TabIndex = 14;
             // 
             // typeTextBox
             // 
-            this.typeTextBox.Location = new System.Drawing.Point(238, 598);
-            this.typeTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.typeTextBox.Location = new System.Drawing.Point(75, 210);
             this.typeTextBox.Name = "typeTextBox";
-            this.typeTextBox.Size = new System.Drawing.Size(397, 44);
+            this.typeTextBox.Size = new System.Drawing.Size(128, 20);
             this.typeTextBox.TabIndex = 13;
             // 
             // contactTextBox
             // 
-            this.contactTextBox.Location = new System.Drawing.Point(238, 512);
-            this.contactTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.contactTextBox.Location = new System.Drawing.Point(75, 180);
             this.contactTextBox.Name = "contactTextBox";
-            this.contactTextBox.Size = new System.Drawing.Size(397, 44);
+            this.contactTextBox.Size = new System.Drawing.Size(128, 20);
             this.contactTextBox.TabIndex = 12;
             // 
             // locationTextBox
             // 
-            this.locationTextBox.Location = new System.Drawing.Point(238, 427);
-            this.locationTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.locationTextBox.Location = new System.Drawing.Point(75, 150);
             this.locationTextBox.Name = "locationTextBox";
-            this.locationTextBox.Size = new System.Drawing.Size(397, 44);
+            this.locationTextBox.Size = new System.Drawing.Size(128, 20);
             this.locationTextBox.TabIndex = 11;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(238, 199);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.descriptionTextBox.Location = new System.Drawing.Point(75, 70);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(397, 192);
+            this.descriptionTextBox.Size = new System.Drawing.Size(128, 70);
             this.descriptionTextBox.TabIndex = 10;
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(238, 114);
-            this.titleTextBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.titleTextBox.Location = new System.Drawing.Point(75, 40);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(397, 44);
+            this.titleTextBox.Size = new System.Drawing.Size(128, 20);
             this.titleTextBox.TabIndex = 9;
             // 
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.Location = new System.Drawing.Point(133, 871);
-            this.endLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.endLabel.Location = new System.Drawing.Point(42, 306);
             this.endLabel.Name = "endLabel";
-            this.endLabel.Size = new System.Drawing.Size(74, 37);
+            this.endLabel.Size = new System.Drawing.Size(26, 13);
             this.endLabel.TabIndex = 8;
             this.endLabel.Text = "End";
             // 
             // startLabel
             // 
             this.startLabel.AutoSize = true;
-            this.startLabel.Location = new System.Drawing.Point(124, 783);
-            this.startLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.startLabel.Location = new System.Drawing.Point(39, 275);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(85, 37);
+            this.startLabel.Size = new System.Drawing.Size(29, 13);
             this.startLabel.TabIndex = 7;
             this.startLabel.Text = "Start";
             // 
             // urlLabel
             // 
             this.urlLabel.AutoSize = true;
-            this.urlLabel.Location = new System.Drawing.Point(124, 692);
-            this.urlLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.urlLabel.Location = new System.Drawing.Point(39, 243);
             this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(80, 37);
+            this.urlLabel.Size = new System.Drawing.Size(29, 13);
             this.urlLabel.TabIndex = 6;
             this.urlLabel.Text = "URL";
             // 
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(117, 606);
-            this.typeLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.typeLabel.Location = new System.Drawing.Point(37, 213);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(87, 37);
+            this.typeLabel.Size = new System.Drawing.Size(31, 13);
             this.typeLabel.TabIndex = 5;
             this.typeLabel.Text = "Type";
             // 
             // contactLabel
             // 
             this.contactLabel.AutoSize = true;
-            this.contactLabel.Location = new System.Drawing.Point(76, 521);
-            this.contactLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.contactLabel.Location = new System.Drawing.Point(24, 183);
             this.contactLabel.Name = "contactLabel";
-            this.contactLabel.Size = new System.Drawing.Size(128, 37);
+            this.contactLabel.Size = new System.Drawing.Size(44, 13);
             this.contactLabel.TabIndex = 4;
             this.contactLabel.Text = "Contact";
             // 
             // locationLabel
             // 
             this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(63, 435);
-            this.locationLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.locationLabel.Location = new System.Drawing.Point(20, 153);
             this.locationLabel.Name = "locationLabel";
-            this.locationLabel.Size = new System.Drawing.Size(139, 37);
+            this.locationLabel.Size = new System.Drawing.Size(48, 13);
             this.locationLabel.TabIndex = 3;
             this.locationLabel.Text = "Location";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(25, 208);
-            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.descriptionLabel.Location = new System.Drawing.Point(8, 73);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(177, 37);
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 2;
             this.descriptionLabel.Text = "Description";
             // 
             // AddAppointment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2635, 1141);
+            this.ClientSize = new System.Drawing.Size(963, 460);
             this.Controls.Add(this.addApptGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.Name = "AddAppointment";
             this.Text = "Add Appointment";
             this.addApptGroupBox.ResumeLayout(false);

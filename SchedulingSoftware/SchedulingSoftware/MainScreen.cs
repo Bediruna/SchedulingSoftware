@@ -19,7 +19,9 @@ namespace SchedulingSoftware
 
             DataProcedures data = new DataProcedures();
 
-            customerDataGridView.DataSource = data.getCustomers();            
+            customerDataGridView.DataSource = data.getCustomers();
+
+            emboldenMonthCalendar();
         }
 
         private void emboldenMonthCalendar()

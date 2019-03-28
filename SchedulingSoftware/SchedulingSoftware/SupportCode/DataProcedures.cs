@@ -808,5 +808,10 @@ namespace SchedulingSoftware.SupportCode
 
             return appts;
         }
+        public List<string> getWeeksAppts()
+        {
+
+            return new List<string>();
+        }
     }
 }

@@ -164,6 +164,9 @@ namespace SchedulingSoftware
             if (weeklyButton.Text == "View Monthly")
             {
                 weeklyDataGridView.Hide();
+                prevWeekButton.Hide();
+                nextWeekButton.Hide();
+                weekLabel.Hide();
                 weeklyButton.Text = "View Weekly";
                 monthCalendar.Show();
             }
@@ -172,6 +175,10 @@ namespace SchedulingSoftware
                 monthCalendar.Hide();
                 weeklyButton.Text = "View Monthly";
                 weeklyDataGridView.Show();
+                prevWeekButton.Show();
+                nextWeekButton.Show();
+                weekLabel.Show();
+                weekLabel.Text = "Week ";
             }
         }
 
@@ -180,6 +187,16 @@ namespace SchedulingSoftware
             this.Hide();
             Reports reportsForm = new Reports(currentUser);
             reportsForm.Show();
+        }
+
+        private void prevWeekButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nextWeekButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

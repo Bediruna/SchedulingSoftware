@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.mainGroupBox = new System.Windows.Forms.GroupBox();
+            this.nextWeekButton = new System.Windows.Forms.Button();
+            this.prevWeekButton = new System.Windows.Forms.Button();
             this.weeklyButton = new System.Windows.Forms.Button();
             this.reportsButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
@@ -44,6 +46,7 @@
             this.customerDataGridView = new System.Windows.Forms.DataGridView();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.weeklyDataGridView = new System.Windows.Forms.DataGridView();
+            this.weekLabel = new System.Windows.Forms.Label();
             this.mainGroupBox.SuspendLayout();
             this.apptGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.apptDataGridView)).BeginInit();
@@ -57,6 +60,9 @@
             this.mainGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainGroupBox.Controls.Add(this.weekLabel);
+            this.mainGroupBox.Controls.Add(this.nextWeekButton);
+            this.mainGroupBox.Controls.Add(this.prevWeekButton);
             this.mainGroupBox.Controls.Add(this.weeklyButton);
             this.mainGroupBox.Controls.Add(this.reportsButton);
             this.mainGroupBox.Controls.Add(this.exitButton);
@@ -70,6 +76,28 @@
             this.mainGroupBox.TabIndex = 0;
             this.mainGroupBox.TabStop = false;
             this.mainGroupBox.Text = "User";
+            // 
+            // nextWeekButton
+            // 
+            this.nextWeekButton.Location = new System.Drawing.Point(794, 355);
+            this.nextWeekButton.Name = "nextWeekButton";
+            this.nextWeekButton.Size = new System.Drawing.Size(75, 23);
+            this.nextWeekButton.TabIndex = 9;
+            this.nextWeekButton.Text = "Next Week";
+            this.nextWeekButton.UseVisualStyleBackColor = true;
+            this.nextWeekButton.Visible = false;
+            this.nextWeekButton.Click += new System.EventHandler(this.nextWeekButton_Click);
+            // 
+            // prevWeekButton
+            // 
+            this.prevWeekButton.Location = new System.Drawing.Point(615, 355);
+            this.prevWeekButton.Name = "prevWeekButton";
+            this.prevWeekButton.Size = new System.Drawing.Size(75, 23);
+            this.prevWeekButton.TabIndex = 8;
+            this.prevWeekButton.Text = "Prev Week";
+            this.prevWeekButton.UseVisualStyleBackColor = true;
+            this.prevWeekButton.Visible = false;
+            this.prevWeekButton.Click += new System.EventHandler(this.prevWeekButton_Click);
             // 
             // weeklyButton
             // 
@@ -274,6 +302,15 @@
             this.weeklyDataGridView.TabIndex = 7;
             this.weeklyDataGridView.Visible = false;
             // 
+            // weekLabel
+            // 
+            this.weekLabel.AutoSize = true;
+            this.weekLabel.Location = new System.Drawing.Point(725, 19);
+            this.weekLabel.Name = "weekLabel";
+            this.weekLabel.Size = new System.Drawing.Size(36, 13);
+            this.weekLabel.TabIndex = 1;
+            this.weekLabel.Text = "Week";
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +320,7 @@
             this.Name = "MainScreen";
             this.Text = "Main Screen";
             this.mainGroupBox.ResumeLayout(false);
+            this.mainGroupBox.PerformLayout();
             this.apptGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.apptDataGridView)).EndInit();
             this.customerGroupBox.ResumeLayout(false);
@@ -310,5 +348,8 @@
         private System.Windows.Forms.Button weeklyButton;
         private System.Windows.Forms.Button reportsButton;
         private System.Windows.Forms.DataGridView weeklyDataGridView;
+        private System.Windows.Forms.Button nextWeekButton;
+        private System.Windows.Forms.Button prevWeekButton;
+        private System.Windows.Forms.Label weekLabel;
     }
 }

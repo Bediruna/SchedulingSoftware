@@ -808,10 +808,44 @@ namespace SchedulingSoftware.SupportCode
 
             return appts;
         }
-        public List<string> getWeeksAppts()
+        public List<Appointment> getWeeksAppts(int userId, DateTime minDate, DateTime maxDate)//Weeks numbered 0 - 52
         {
+            List<Appointment> appts = new List<Appointment>();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT start, end FROM appointment WHERE userId = @userId AND start BETWEEN @minDate AND @maxDate";
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@minDate", minDate);
+                cmd.Parameters.AddWithValue("@maxDate", maxDate);
+                cmd.ExecuteNonQuery();
 
-            return new List<string>();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        appts.Add(new Appointment()
+                        {
+                            start = Convert.ToDateTime(reader["start"]),
+                            end = Convert.ToDateTime(reader["end"])
+                        });
+                    }
+                }
+            }
+            //catches errors in case the above code fails
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception thrown when getting Weeks Appts: " + ex);
+            }
+            //Close connection regardless of whether the try block executes or not.
+            finally
+            {
+                conn.Close();
+            }
+
+            return appts;
         }
     }
 }

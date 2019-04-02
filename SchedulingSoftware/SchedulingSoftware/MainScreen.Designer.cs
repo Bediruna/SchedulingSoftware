@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.mainGroupBox = new System.Windows.Forms.GroupBox();
+            this.weekLabel = new System.Windows.Forms.Label();
             this.nextWeekButton = new System.Windows.Forms.Button();
             this.prevWeekButton = new System.Windows.Forms.Button();
             this.weeklyButton = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.customerDataGridView = new System.Windows.Forms.DataGridView();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.weeklyDataGridView = new System.Windows.Forms.DataGridView();
-            this.weekLabel = new System.Windows.Forms.Label();
             this.mainGroupBox.SuspendLayout();
             this.apptGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.apptDataGridView)).BeginInit();
@@ -76,6 +76,16 @@
             this.mainGroupBox.TabIndex = 0;
             this.mainGroupBox.TabStop = false;
             this.mainGroupBox.Text = "User";
+            // 
+            // weekLabel
+            // 
+            this.weekLabel.AutoSize = true;
+            this.weekLabel.Location = new System.Drawing.Point(725, 19);
+            this.weekLabel.Name = "weekLabel";
+            this.weekLabel.Size = new System.Drawing.Size(36, 13);
+            this.weekLabel.TabIndex = 1;
+            this.weekLabel.Text = "Week";
+            this.weekLabel.Visible = false;
             // 
             // nextWeekButton
             // 
@@ -301,15 +311,6 @@
             this.weeklyDataGridView.Size = new System.Drawing.Size(254, 311);
             this.weeklyDataGridView.TabIndex = 7;
             this.weeklyDataGridView.Visible = false;
-            // 
-            // weekLabel
-            // 
-            this.weekLabel.AutoSize = true;
-            this.weekLabel.Location = new System.Drawing.Point(725, 19);
-            this.weekLabel.Name = "weekLabel";
-            this.weekLabel.Size = new System.Drawing.Size(36, 13);
-            this.weekLabel.TabIndex = 1;
-            this.weekLabel.Text = "Week";
             // 
             // MainScreen
             // 

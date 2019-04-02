@@ -34,7 +34,7 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.resultsGroupBox = new System.Windows.Forms.GroupBox();
-            this.resultLabel = new System.Windows.Forms.Label();
+            this.resultTextBox = new System.Windows.Forms.TextBox();
             this.resultsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +92,7 @@
             // 
             // resultsGroupBox
             // 
-            this.resultsGroupBox.Controls.Add(this.resultLabel);
+            this.resultsGroupBox.Controls.Add(this.resultTextBox);
             this.resultsGroupBox.Location = new System.Drawing.Point(12, 51);
             this.resultsGroupBox.Name = "resultsGroupBox";
             this.resultsGroupBox.Size = new System.Drawing.Size(462, 283);
@@ -101,14 +101,15 @@
             this.resultsGroupBox.Text = "Appt Types By Month";
             this.resultsGroupBox.Visible = false;
             // 
-            // resultLabel
+            // resultTextBox
             // 
-            this.resultLabel.AutoSize = true;
-            this.resultLabel.Location = new System.Drawing.Point(6, 28);
-            this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(32, 13);
-            this.resultLabel.TabIndex = 0;
-            this.resultLabel.Text = "result";
+            this.resultTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resultTextBox.Location = new System.Drawing.Point(3, 16);
+            this.resultTextBox.Multiline = true;
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.resultTextBox.Size = new System.Drawing.Size(456, 264);
+            this.resultTextBox.TabIndex = 1;
             // 
             // Reports
             // 
@@ -137,6 +138,6 @@
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.GroupBox resultsGroupBox;
-        private System.Windows.Forms.Label resultLabel;
+        private System.Windows.Forms.TextBox resultTextBox;
     }
 }

@@ -3,6 +3,7 @@ using SchedulingSoftware.SupportCode;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SchedulingSoftware
@@ -34,7 +35,8 @@ namespace SchedulingSoftware
             DateTime[] datesToBold = new DateTime[60];
 
             int iterator = 0;
-            appts.ForEach(appt => {//lambda used to make foreach simpler
+            appts.ForEach(appt =>
+            {//lambda used to make foreach simpler
                 datesToBold[iterator] = appt.start;
                 iterator++;
             });
@@ -145,9 +147,54 @@ namespace SchedulingSoftware
             apptGroupBox.Text = "Appointments for " + customerDataGridView.Rows[customerDataGridView.CurrentCell.RowIndex].Cells[1].Value;
         }
 
+        int weekOfTheYear;
         private void weeklyButton_Click(object sender, EventArgs e)
         {
-            DataTable weeklyDataTable = new DataTable();
+            DataProcedures data = new DataProcedures();
+
+            if (weeklyButton.Text == "View Monthly")
+            {
+                weeklyDataGridView.Hide();
+                prevWeekButton.Hide();
+                nextWeekButton.Hide();
+                weekLabel.Hide();
+                weeklyButton.Text = "View Weekly";
+                monthCalendar.Show();
+            }
+            else
+            {
+                weeklyDataGridView.Show();
+                prevWeekButton.Show();
+                nextWeekButton.Show();
+                weekLabel.Show();
+
+
+                //Code was referrenced from: https://docs.microsoft.com/en-us/dotnet/api/system.globalization.calendar.getweekofyear?view=netframework-4.7.2
+                // Gets the Calendar instance associated with a CultureInfo.
+                CultureInfo myCI = new CultureInfo("en-US");
+                Calendar myCal = myCI.Calendar;
+
+                // Gets the DTFI properties required by GetWeekOfYear.
+                CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
+                DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
+
+                weekOfTheYear = myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+                setWeeklyCalendar();
+
+                weekLabel.Text = "Week " + weekOfTheYear;
+                weeklyButton.Text = "View Monthly";
+                monthCalendar.Hide();
+
+            }
+        }
+        DataTable weeklyDataTable;
+        private void setWeeklyCalendar()
+        {
+            DataProcedures data = new DataProcedures();
+
+            List<Appointment> weeksAppointments = data.getWeeksAppts(currentUser.userId, weekOfTheYear);
+
+            weeklyDataTable = new DataTable();
 
             //If column does not exist, add column.
             if (!weeklyDataTable.Columns.Contains("SUN")) { weeklyDataTable.Columns.Add("SUN", typeof(string)); }
@@ -161,25 +208,42 @@ namespace SchedulingSoftware
 
             weeklyDataGridView.DataSource = weeklyDataTable;
 
-            if (weeklyButton.Text == "View Monthly")
+            weeksAppointments.ForEach(appt =>
             {
-                weeklyDataGridView.Hide();
-                prevWeekButton.Hide();
-                nextWeekButton.Hide();
-                weekLabel.Hide();
-                weeklyButton.Text = "View Weekly";
-                monthCalendar.Show();
-            }
-            else
-            {
-                monthCalendar.Hide();
-                weeklyButton.Text = "View Monthly";
-                weeklyDataGridView.Show();
-                prevWeekButton.Show();
-                nextWeekButton.Show();
-                weekLabel.Show();
-                weekLabel.Text = "Week ";
-            }
+                DataRow dataRow;
+
+                switch (appt.start.DayOfWeek.ToString())//Get the day of week for each start date for appointments in week. To put in correct column
+                {
+                    case "Sunday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[0] = appt.title;
+                        break;
+                    case "Monday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[1] = appt.title;
+                        break;
+                    case "Tuesday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[2] = appt.title;
+                        break;
+                    case "Wednesday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[3] = appt.title;
+                        break;
+                    case "Thursday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[4] = appt.title;
+                        break;
+                    case "Friday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[5] = appt.title;
+                        break;
+                    case "Saturday":
+                        dataRow = weeklyDataTable.Rows.Add();
+                        dataRow[6] = appt.title;
+                        break;
+                }
+            });
         }
 
         private void reportsButton_Click(object sender, EventArgs e)
@@ -191,12 +255,24 @@ namespace SchedulingSoftware
 
         private void prevWeekButton_Click(object sender, EventArgs e)
         {
-
+            if (weekOfTheYear > 0)
+            {
+                weekOfTheYear--;
+                weekLabel.Text = "Week " + weekOfTheYear;
+            }
+            weeklyDataTable.Clear();
+            setWeeklyCalendar();
         }
 
         private void nextWeekButton_Click(object sender, EventArgs e)
         {
-
+            if (weekOfTheYear < 53)
+            {
+                weekOfTheYear++;
+                weekLabel.Text = "Week " + weekOfTheYear;
+            }
+            weeklyDataTable.Clear();
+            setWeeklyCalendar();
         }
     }
 }

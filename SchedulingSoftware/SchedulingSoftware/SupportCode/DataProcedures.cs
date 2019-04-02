@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using MySql.Data.MySqlClient;
 using SchedulingSoftware.DataModels;
@@ -697,9 +698,9 @@ namespace SchedulingSoftware.SupportCode
             return appts;
         }
 
-        public List<Appointment> returnApptTypesByMonth(int userId, int month)
+        public List<string> returnApptTypesByMonth(int userId, int month)
         {
-            List<Appointment> appts = new List<Appointment>();
+            List<string> appts = new List<string>();
             DateTime currentUtc = DateTime.UtcNow;
 
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -716,10 +717,7 @@ namespace SchedulingSoftware.SupportCode
                 {
                     while (reader.Read())
                     {
-                        appts.Add(new Appointment()
-                        {
-                            type = reader["type"].ToString()
-                        });
+                        appts.Add(reader["type"].ToString());
                     }
                 }
             }
@@ -808,18 +806,51 @@ namespace SchedulingSoftware.SupportCode
 
             return appts;
         }
-        public List<Appointment> getWeeksAppts(int userId, DateTime minDate, DateTime maxDate)//Weeks numbered 0 - 52
+
+        //Code was referrenced from: https://stackoverflow.com/questions/662379/calculate-date-from-week-number
+        public static DateTime FirstDateOfWeek(int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(2019, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            // Use first Thursday in January to get first week of the year as
+            // it will never be in Week 52/53
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            // As we're adding days to a date in Week 1,
+            // we need to subtract 1 in order to get the right date for week #1
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+
+            // Using the first Thursday as starting week ensures that we are starting in the right year
+            // then we add number of weeks multiplied with days
+            var result = firstThursday.AddDays(weekNum * 7);
+
+            // Subtract 4 days from Thursday to get Sunday, which is the first day of the week in the US
+            return result.AddDays(-4);
+        }
+
+        public List<Appointment> getWeeksAppts(int userId, int _weekOfTheYear)//Weeks numbered 0 - 53
         {
             List<Appointment> appts = new List<Appointment>();
             MySqlConnection conn = new MySqlConnection(connectionString);
+
+            DateTime startOfWeek = FirstDateOfWeek(_weekOfTheYear);
+            DateTime endOfWeek = startOfWeek.AddDays(7);
+
             try
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT start, end FROM appointment WHERE userId = @userId AND start BETWEEN @minDate AND @maxDate";
+                cmd.CommandText = "SELECT start, end, title FROM appointment WHERE userId = @userId AND start BETWEEN @startOfWeek AND @endOfWeek";
                 cmd.Parameters.AddWithValue("@userId", userId);
-                cmd.Parameters.AddWithValue("@minDate", minDate);
-                cmd.Parameters.AddWithValue("@maxDate", maxDate);
+                cmd.Parameters.AddWithValue("@startOfWeek", startOfWeek);
+                cmd.Parameters.AddWithValue("@endOfWeek", endOfWeek);
                 cmd.ExecuteNonQuery();
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -829,7 +860,8 @@ namespace SchedulingSoftware.SupportCode
                         appts.Add(new Appointment()
                         {
                             start = Convert.ToDateTime(reader["start"]),
-                            end = Convert.ToDateTime(reader["end"])
+                            end = Convert.ToDateTime(reader["end"]),
+                            title = reader["title"].ToString()
                         });
                     }
                 }

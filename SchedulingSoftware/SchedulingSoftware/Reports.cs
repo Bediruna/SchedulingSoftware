@@ -2,6 +2,8 @@
 using SchedulingSoftware.SupportCode;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SchedulingSoftware
@@ -33,84 +35,27 @@ namespace SchedulingSoftware
             DataProcedures data = new DataProcedures();
             resultsGroupBox.Visible = true;
             resultsGroupBox.Text = "Appt Types By Month";
-            resultLabel.Text = string.Empty;
+            resultTextBox.Text = string.Empty;
 
-            string janString = string.Empty;
-            string febString = string.Empty;
-            string marString = string.Empty;
-            string aprString = string.Empty;
-            string mayString = string.Empty;
-            string junString = string.Empty;
-            string julString = string.Empty;
-            string augString = string.Empty;
-            string sepString = string.Empty;
-            string octString = string.Empty;
-            string novString = string.Empty;
-            string decString = string.Empty;
+            string resultString = string.Empty;
 
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 1))
+            for (int i = 1; i <= 12; i++)
             {
-                janString += apptMonth.type + ", ";
-            }
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 2))
-            {
-                febString += apptMonth.type + ", ";
-            }
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 3))
-            {
-                marString += apptMonth.type + ", ";
-            }
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 4))
-            {
-                aprString += apptMonth.type + ", ";
-            }
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 5))
-            {
-                mayString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 6))
-            {
-                junString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 7))
-            {
-                julString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 8))
-            {
-                augString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 9))
-            {
-                sepString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 10))
-            {
-                octString += apptMonth.type + ", ";
-            }
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 11))
-            {
-                novString += apptMonth.type + ", ";
-            }            
-            foreach (var apptMonth in data.returnApptTypesByMonth(currentUser.userId, 12))
-            {
-                decString += apptMonth.type + ", ";
+                List<string> list = data.returnApptTypesByMonth(currentUser.userId, i);
+                var q = from x in list
+                        group x by x into g
+                        let count = g.Count()
+                        orderby count descending
+                        select new { Value = g.Key, Count = count };
+
+                resultString += Environment.NewLine + DateTimeFormatInfo.CurrentInfo.GetMonthName(i) + Environment.NewLine;
+                foreach (var x in q)
+                {
+                    resultString += "Appointment type: " + x.Value + "\t Count: " + x.Count + Environment.NewLine;
+                }
             }
 
-            resultLabel.Text =
-                "January: " + janString +
-                "\nFebruary: " + febString +
-                "\nMarch: " + marString +
-                "\nApril: " + aprString +
-                "\nMay: " + mayString +
-                "\nJune: " + junString +
-                "\nJuly: " + julString +
-                "\nAugust: " + augString +
-                "\nSeptember: " + sepString +
-                "\nOctober: " + octString +
-                "\nNovember: " + novString +
-                "\nDecember: " + decString
-                ;
+            resultTextBox.Text = resultString;
         }
 
         private void consultantScheduleButton_Click(object sender, EventArgs e)
@@ -118,21 +63,23 @@ namespace SchedulingSoftware
             DataProcedures data = new DataProcedures();
             resultsGroupBox.Visible = true;
             resultsGroupBox.Text = "Consultants schedule";
-            resultLabel.Text = string.Empty;
+            resultTextBox.Text = string.Empty;
 
             string resultString = string.Empty;
 
             List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
 
-            userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
+            userIdsDistinct.ForEach(varid =>
+            {//lambda used to make foreach simpler
                 List<Appointment> consultantAppts = data.returnUserSchedule(varid);
-                resultString += "\n\nAppointments for user " + varid + "";
-                consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
-                    resultString += "\nStart: " + appt.start + "   End: " + appt.end;
+                resultString += "\n\nAppointments for user " + varid + "\n";
+                consultantAppts.ForEach(appt =>
+                {//lambda used to make foreach simpler
+                    resultString += "\nStart: " + appt.start + "   End: " + appt.end + Environment.NewLine;
                 });
             });
 
-            resultLabel.Text = resultString;
+            resultTextBox.Text = resultString;
         }
 
         private void consultantHoursButton_Click(object sender, EventArgs e)
@@ -140,23 +87,25 @@ namespace SchedulingSoftware
             DataProcedures data = new DataProcedures();
             resultsGroupBox.Visible = true;
             resultsGroupBox.Text = "Consultants hours";
-            resultLabel.Text = string.Empty;
+            resultTextBox.Text = string.Empty;
 
             string resultString = string.Empty;
 
             List<int> userIdsDistinct = data.returnDistinctConsultantsWithAppts();
 
-            userIdsDistinct.ForEach(varid => {//lambda used to make foreach simpler
-                List<Appointment> consultantAppts = data.returnUserSchedule(varid);                
+            userIdsDistinct.ForEach(varid =>
+            {//lambda used to make foreach simpler
+                List<Appointment> consultantAppts = data.returnUserSchedule(varid);
                 double totalHours = 0;
-                consultantAppts.ForEach(appt => {//lambda used to make foreach simpler
-                    totalHours += (appt.end - appt.start).TotalHours;                    
+                consultantAppts.ForEach(appt =>
+                {//lambda used to make foreach simpler
+                    totalHours += (appt.end - appt.start).TotalHours;
                 });
 
                 resultString += "\n\nTotal hours for user " + varid + ": " + totalHours;
             });
 
-            resultLabel.Text = resultString;
+            resultTextBox.Text = resultString;
         }
     }
 }
